@@ -1,9 +1,13 @@
+require("./models/User");
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
+// add above routes because first parse the body then send data to routes
+app.use(bodyParser.json());
 app.use(authRoutes);
 
 const mongoURI =
