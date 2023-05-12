@@ -1,8 +1,11 @@
 require("./models/User");
+require("./models/Track");
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
+const trackRoutes = require("./routes/trackRoutes");
 const requireAuth = require("./middlewares/requireAuth");
 
 const app = express();
@@ -10,6 +13,7 @@ const app = express();
 // add above routes because first parse the body then send data to routes
 app.use(bodyParser.json());
 app.use(authRoutes);
+app.use(trackRoutes);
 
 const mongoURI =
   "mongodb+srv://admin:passwordpassword@clusters.phmyucu.mongodb.net/";
