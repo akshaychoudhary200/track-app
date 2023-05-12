@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
+const requireAuth = require("./middlewares/requireAuth");
 
 const app = express();
 
@@ -21,8 +22,9 @@ mongoose.connection.on("error", (err) => {
   console.error("Error connecting mongo", err);
 });
 
-app.get("/", (req, res) => {
-  res.send("hello");
+// req to access check valid token by calling auth valid -> give access
+app.get("/", requireAuth, (req, res) => {
+  res.send(`your email: ${req.user.email}`);
 });
 
 app.listen(3000, () => {
