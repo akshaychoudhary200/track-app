@@ -15,8 +15,7 @@ app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(trackRoutes);
 
-const mongoURI =
-  "mongodb+srv://admin:passwordpassword@clusters.phmyucu.mongodb.net/";
+const mongoURI = "";
 
 mongoose.connect(mongoURI);
 mongoose.connection.on("connected", () => {
